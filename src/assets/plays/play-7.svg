@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="春草闯堂">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0a0507"/><stop offset=".5" stop-color="#351013"/><stop offset="1" stop-color="#15100b"/></linearGradient>
+    <radialGradient id="spot" cx=".5" cy=".18" r=".9"><stop stop-color="#db2777" stop-opacity=".45"/><stop offset=".72" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" rx="28" fill="url(#bg)"/>
+  <rect width="480" height="270" rx="28" fill="url(#spot)"/>
+  <path d="M0 214c82-32 148-32 230 0s164 32 250 0v56H0Z" fill="#050203" opacity=".55"/>
+  <g transform="translate(60 8)"><circle cx="180" cy="136" r="24" fill="#ffe1a3"/><g fill="#db2777"><ellipse cx="180" cy="88" rx="24" ry="42"/><ellipse cx="180" cy="184" rx="24" ry="42"/><ellipse cx="132" cy="136" rx="42" ry="24"/><ellipse cx="228" cy="136" rx="42" ry="24"/></g><circle cx="180" cy="136" r="18" fill="#7a1717"/></g>
+  <text x="28" y="228" fill="#ffe7ad" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="28" font-weight="800">春草闯堂</text>
+  <text x="28" y="252" fill="#f8c469" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="14">新编轻喜 · 青年团</text>
+</svg>

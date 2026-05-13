@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="名家名段演唱会">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0a0507"/><stop offset=".5" stop-color="#351013"/><stop offset="1" stop-color="#15100b"/></linearGradient>
+    <radialGradient id="spot" cx=".5" cy=".18" r=".9"><stop stop-color="#7c3aed" stop-opacity=".45"/><stop offset=".72" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" rx="28" fill="url(#bg)"/>
+  <rect width="480" height="270" rx="28" fill="url(#spot)"/>
+  <path d="M0 214c82-32 148-32 230 0s164 32 250 0v56H0Z" fill="#050203" opacity=".55"/>
+  <g transform="translate(60 8)"><rect x="158" y="70" width="44" height="92" rx="22" fill="#7c3aed" stroke="#ffe1a3" stroke-width="7"/><path d="M128 138c0 40 104 40 104 0M180 180v34M144 214h72" fill="none" stroke="#f8d48a" stroke-width="9" stroke-linecap="round"/></g>
+  <text x="28" y="228" fill="#ffe7ad" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="28" font-weight="800">名家名段演唱会</text>
+  <text x="28" y="252" fill="#f8c469" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="14">经典唱段 · 一晚看尽</text>
+</svg>

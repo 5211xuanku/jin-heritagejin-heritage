@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "sjy-d0gxtaklr8e1be761",
+  "region": "ap-shanghai",
+  "functionRoot": "cloudbase/functions",
+  "framework": {
+    "name": "vite",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "buildCommand": "npm run build",
+          "outputPath": "dist",
+          "cloudPath": "/"
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "name": "crud",
+      "handler": "index.main",
+      "runtime": "Nodejs16.13",
+      "timeout": 20,
+      "memorySize": 256
+    }
+  ]
+}

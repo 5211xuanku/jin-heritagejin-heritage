@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396 240" role="img" aria-label="锣鼓经节奏课">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0b0507"/><stop offset=".52" stop-color="#321014"/><stop offset="1" stop-color="#151009"/></linearGradient>
+    <radialGradient id="glow" cx=".28" cy=".2" r=".86"><stop stop-color="#d97706" stop-opacity=".42"/><stop offset=".7" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="396" height="240" rx="26" fill="url(#bg)"/>
+  <rect width="396" height="240" rx="26" fill="url(#glow)"/>
+  <path d="M0 188c72-24 134-22 198 0s126 24 198 0v52H0Z" fill="#050203" opacity=".5"/>
+  <circle cx="198" cy="142" r="70" fill="#d97706" opacity=".85" stroke="#ffe6ad" stroke-width="8"/><circle cx="198" cy="142" r="34" fill="none" stroke="#2a1214" stroke-width="7"/><path d="M98 92l82 58M298 92l-82 58" stroke="#f8d48a" stroke-width="9" stroke-linecap="round"/>
+  <text x="24" y="202" fill="#ffe7ad" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="24" font-weight="800">锣鼓经节奏课</text>
+  <text x="24" y="224" fill="#f8c469" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="13">板式 节拍 锣鼓点</text>
+</svg>

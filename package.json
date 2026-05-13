@@ -1,0 +1,102 @@
+{
+  "name": "jin-bang-zhi-yi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "dependencies": {
+    "@capacitor/android": "^8.3.3",
+    "@capacitor/core": "^8.3.3",
+    "@cloudbase/js-sdk": "^2.28.5",
+    "@types/three": "^0.184.1",
+    "dexie": "^4.4.2",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.284.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.3.3",
+    "@types/node": "^20.8.10",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@vitejs/plugin-react": "^4.2.0",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^9.2.1",
+    "electron": "^42.0.1",
+    "electron-builder": "^26.8.1",
+    "postcss": "^8.4.31",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^3.3.5",
+    "terser": "^5.47.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.2",
+    "wait-on": "^9.0.5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:electron": "concurrently \"vite\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "tsc && vite build",
+    "build:android": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-android.ps1",
+    "android:sync": "npm run build && cap sync android",
+    "android:open": "cap open android",
+    "check:encoding": "node scripts/check-encoding.mjs",
+    "build:electron": "npm run build && electron-builder --publish=never",
+    "build:msix": "npm run build && electron-builder --win appx --x64 --publish=never",
+    "auto:update": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/auto-update-git.ps1",
+    "preview": "vite preview"
+  },
+  "build": {
+    "appId": "com.jinbang.zhiyi",
+    "productName": "晋梆智绎",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "appx",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/icon.ico"
+    },
+    "appx": {
+      "identityName": "JinBangZhiYi",
+      "applicationId": "JinBangZhiYi",
+      "displayName": "晋梆智绎",
+      "publisher": "CN=JinBangZhiYi",
+      "publisherDisplayName": "晋梆智绎团队",
+      "languages": [
+        "zh-CN"
+      ],
+      "backgroundColor": "#090405",
+      "showNameOnTiles": true,
+      "setBuildNumber": true
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "晋梆智绎",
+      "include": "build/installer.nsh"
+    }
+  },
+  "description": "三晋非遗数字化赋能平台",
+  "author": "晋梆智绎团队"
+}

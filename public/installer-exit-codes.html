@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://jinbangzhiyi.online/installer-exit-codes.html">
+  <title>安装程序返回代码文档 - 晋梆智绎</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      line-height: 1.8;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .subtitle {
+      color: #888;
+      margin-bottom: 30px;
+    }
+    .notice {
+      margin: 20px 0 28px;
+      padding: 16px 18px;
+      border: 1px solid #31556f;
+      border-radius: 8px;
+      background: #183044;
+      color: #cfeeff;
+    }
+    .notice strong { color: #fff; }
+    h2 {
+      font-size: 20px;
+      margin: 30px 0 15px;
+      color: #4fc3f7;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: #252540;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background: #303050;
+      font-weight: 600;
+      color: #4fc3f7;
+    }
+    tr:hover {
+      background: #2a2a48;
+    }
+    .code {
+      font-family: 'Consolas', 'Monaco', monospace;
+      background: #1a1a30;
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: #7ee787;
+    }
+    .success { color: #7ee787; }
+    .warning { color: #ffa726; }
+    .error { color: #ef5350; }
+    .info { color: #4fc3f7; }
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+    a { color: #4fc3f7; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>晋梆智绎 安装程序返回代码文档</h1>
+    <p class="subtitle">Installer Exit Codes Documentation | 版本 v1.0.0 | 更新日期 2026-05-11</p>
+
+    <div class="notice">
+      <strong>说明：</strong>本应用使用 Electron Builder 生成 Windows x64 NSIS 安装包，不是 MSI 安装包。
+      因此 Microsoft Partner Center 中应填写本项目定义的 NSIS 返回代码，不使用 MSI 的 1602、1603、1638、3010 等代码。
+    </div>
+
+    <h2>✅ Microsoft Partner Center 填写值</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>表单字段</th>
+          <th>建议填写</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>用户取消了安装</td>
+          <td><span class="code">1</span></td>
+          <td>NSIS 默认返回码：用户点击取消或关闭安装器</td>
+        </tr>
+        <tr>
+          <td>应用程序已存在</td>
+          <td><span class="code">3</span></td>
+          <td>检测到相同版本已安装时返回</td>
+        </tr>
+        <tr>
+          <td>安装正在进行中</td>
+          <td><span class="code">2</span></td>
+          <td>Electron Builder 会阻止多个安装器实例同时运行，NSIS 脚本中止返回 2</td>
+        </tr>
+        <tr>
+          <td>磁盘空间已满</td>
+          <td><span class="code">5</span></td>
+          <td>安装前检测到目标磁盘可用空间不足时返回</td>
+        </tr>
+        <tr>
+          <td>需要重启</td>
+          <td><span class="code">9</span></td>
+          <td>检测到 Windows 存在待重启标记时返回</td>
+        </tr>
+        <tr>
+          <td>其他安装失败场景文档 URL</td>
+          <td><span class="code">https://jinbangzhiyi.online/installer-exit-codes.html</span></td>
+          <td>本页面作为安装返回代码说明文档</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>📋 本项目安装包返回代码</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>返回代码</th>
+          <th>场景描述</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="code">0</span></td>
+          <td class="success">✓ 安装成功</td>
+          <td>应用程序已成功安装到系统</td>
+        </tr>
+        <tr>
+          <td><span class="code">1</span></td>
+          <td class="warning">⚠ 用户取消安装</td>
+          <td>NSIS 默认返回码：用户在安装过程中点击取消或关闭安装窗口</td>
+        </tr>
+        <tr>
+          <td><span class="code">2</span></td>
+          <td class="error">✗ 安装脚本中止 / 安装正在进行中</td>
+          <td>NSIS 默认返回码：安装脚本主动中止，例如检测到另一个安装器实例</td>
+        </tr>
+        <tr>
+          <td><span class="code">3</span></td>
+          <td class="warning">⚠ 应用程序已存在</td>
+          <td>自定义 NSIS 返回码：检测到相同版本已经安装</td>
+        </tr>
+        <tr>
+          <td><span class="code">5</span></td>
+          <td class="error">✗ 磁盘空间已满</td>
+          <td>自定义 NSIS 返回码：目标磁盘空间不足</td>
+        </tr>
+        <tr>
+          <td><span class="code">9</span></td>
+          <td class="warning">⚠ 需要重启</td>
+          <td>自定义 NSIS 返回码：系统存在待重启任务</td>
+        </tr>
+        <tr>
+          <td><span class="code">6710886</span></td>
+          <td class="error">✗ 无法提升权限</td>
+          <td>Electron Builder NSIS 特定返回码，十六进制为 0x666666</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🔧 NSIS 安装器特定代码</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>返回代码</th>
+          <th>场景描述</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="code">0</span></td>
+          <td class="success">✓ 成功</td>
+          <td>NSIS 安装成功完成</td>
+        </tr>
+        <tr>
+          <td><span class="code">1</span></td>
+          <td class="warning">⚠ 用户取消</td>
+          <td>NSIS 官方默认返回码：Installation aborted by user</td>
+        </tr>
+        <tr>
+          <td><span class="code">2</span></td>
+          <td class="error">✗ 脚本中止</td>
+          <td>NSIS 官方默认返回码：Installation aborted by script</td>
+        </tr>
+        <tr>
+          <td><span class="code">0x666666</span> / <span class="code">6710886</span></td>
+          <td class="error">✗ 无法提升权限</td>
+          <td>Electron Builder 模板中的权限提升失败返回码</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🚫 不适用于本项目的 MSI 代码</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>代码</th>
+          <th>含义</th>
+          <th>本项目处理方式</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="code">1602</span></td>
+          <td>MSI 用户取消安装</td>
+          <td>本项目改用 NSIS 返回码 <span class="code">1</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">1603</span></td>
+          <td>MSI 安装期间致命错误</td>
+          <td>本项目不是 MSI 安装包；通用脚本中止使用 <span class="code">2</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">1638</span></td>
+          <td>MSI 已安装另一个版本</td>
+          <td>本项目改用自定义 NSIS 返回码 <span class="code">3</span></td>
+        </tr>
+        <tr>
+          <td><span class="code">3010</span></td>
+          <td>MSI 安装成功但需要重启</td>
+          <td>本项目改用自定义 NSIS 返回码 <span class="code">9</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>📊 应用商店提交信息</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>应用名称</td>
+          <td>晋梆智绎</td>
+        </tr>
+        <tr>
+          <td>版本</td>
+          <td>v1.0.0</td>
+        </tr>
+        <tr>
+          <td>安装程序类型</td>
+          <td>NSIS (Nullsoft Scriptable Install System)</td>
+        </tr>
+        <tr>
+          <td>支持平台</td>
+          <td>Windows 10/11 x64</td>
+        </tr>
+        <tr>
+          <td>安装程序大小</td>
+          <td>约 107 MB</td>
+        </tr>
+        <tr>
+          <td>文档 URL</td>
+          <td><a href="https://jinbangzhiyi.online/installer-exit-codes.html">https://jinbangzhiyi.online/installer-exit-codes.html</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>📝 填写参考摘要</h2>
+    <p>针对 Microsoft Store / Microsoft Partner Center 提交表单，建议填写以下值：</p>
+    <ul style="margin: 20px 0; padding-left: 20px; color: #aaa;">
+      <li><strong>用户取消了安装：</strong>填写 <span class="code">1</span></li>
+      <li><strong>应用程序已存在：</strong>填写 <span class="code">3</span></li>
+      <li><strong>安装正在进行中：</strong>填写 <span class="code">2</span></li>
+      <li><strong>磁盘空间已满：</strong>填写 <span class="code">5</span></li>
+      <li><strong>需要重启：</strong>填写 <span class="code">9</span></li>
+      <li><strong>其他安装失败场景：</strong>填写文档 URL <span class="code">https://jinbangzhiyi.online/installer-exit-codes.html</span></li>
+    </ul>
+
+    <div class="footer">
+      <p>© 2026 晋梆智绎 | 技术支持：<a href="https://jinbangzhiyi.online/support.html">支持中心</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-label="小宴">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0a0507"/><stop offset=".5" stop-color="#351013"/><stop offset="1" stop-color="#15100b"/></linearGradient>
+    <radialGradient id="spot" cx=".5" cy=".18" r=".9"><stop stop-color="#dc2626" stop-opacity=".45"/><stop offset=".72" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="480" height="270" rx="28" fill="url(#bg)"/>
+  <rect width="480" height="270" rx="28" fill="url(#spot)"/>
+  <path d="M0 214c82-32 148-32 230 0s164 32 250 0v56H0Z" fill="#050203" opacity=".55"/>
+  <g transform="translate(60 8)"><path d="M130 92c20-28 80-28 100 0v82c-20 28-80 28-100 0Z" fill="#dc2626" stroke="#ffe1a3" stroke-width="7"/><path d="M180 62v160M138 120h84M138 154h84" stroke="#3b1112" stroke-width="6" opacity=".55"/></g>
+  <text x="28" y="228" fill="#ffe7ad" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="28" font-weight="800">小宴</text>
+  <text x="28" y="252" fill="#f8c469" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="14">凤仪亭 · 身段示范</text>
+</svg>

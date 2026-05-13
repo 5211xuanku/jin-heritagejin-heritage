@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 260" role="img" aria-label="明制道袍">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#120709"/><stop offset=".55" stop-color="#34100f"/><stop offset="1" stop-color="#0b1416"/></linearGradient>
+    <pattern id="silk" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M0 14c8-8 20-8 28 0M0 28c8-8 20-8 28 0" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/></pattern>
+  </defs>
+  <rect width="360" height="260" rx="24" fill="url(#bg)"/>
+  <circle cx="278" cy="58" r="80" fill="#8b6f4e" opacity=".18"/>
+  <rect width="360" height="260" rx="24" fill="url(#silk)"/>
+  <path d="M142 82h76l28 44-24 90h-84l-24-90Z" fill="#8b6f4e" stroke="#ffe1a3" stroke-width="6"/><path d="M150 92h60v122h-60Z" fill="#6b8a4e" opacity=".68"/><path d="M120 126h120M180 82v134" stroke="#fff1bf" stroke-width="5" opacity=".65"/>
+  <path d="M128 112c30 18 74 18 104 0M142 190c24 14 52 14 76 0" fill="none" stroke="#f8d48a" stroke-width="6" stroke-linecap="round"/>
+  <text x="24" y="232" fill="#ffe7ad" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="22" font-weight="700">明制道袍</text>
+  <text x="24" y="252" fill="#f8c469" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="12">茶褐 · 竹青</text>
+</svg>

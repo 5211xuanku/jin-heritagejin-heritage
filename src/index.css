@@ -1,0 +1,762 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Inter', 'Noto Sans SC', 'Noto Serif SC', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: rgba(255, 255, 255, 0.92);
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  background-color: #090506;
+  background:
+    radial-gradient(circle at 18% -12%, rgba(255, 202, 112, 0.16), transparent 34%),
+    radial-gradient(circle at 86% 10%, rgba(180, 55, 64, 0.13), transparent 38%),
+    linear-gradient(145deg, #090405 0%, #120709 42%, #07080a 100%);
+}
+
+:root {
+  --electron-titlebar-height: 38px;
+  --ios-radius-sm: 10px;
+  --ios-radius-md: 14px;
+  --ios-radius-lg: 18px;
+  --ios-radius-xl: 24px;
+  --ios-tint: #f4c46a;
+  --ios-red: #9f2d35;
+  --ios-jade: #4fb88b;
+  --ios-ink: #0d1117;
+  --ios-surface: rgba(255, 255, 255, 0.09);
+  --ios-surface-strong: rgba(255, 255, 255, 0.13);
+  --ios-border: rgba(255, 255, 255, 0.16);
+  --ios-hairline: rgba(255, 255, 255, 0.09);
+  --ios-shadow: 0 22px 64px rgba(0, 0, 0, 0.34);
+  --ios-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell--electron {
+  padding-top: var(--electron-titlebar-height);
+}
+
+.app-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+::selection {
+  background: rgba(246, 191, 98, 0.34);
+  color: #fff7df;
+}
+
+@layer components {
+  .glass-window {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.07)),
+      rgba(20, 10, 12, 0.52);
+    border: 1px solid var(--ios-border);
+    box-shadow:
+      var(--ios-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(34px) saturate(180%);
+    -webkit-backdrop-filter: blur(34px) saturate(180%);
+    border-radius: var(--ios-radius-lg);
+  }
+
+  .glass-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(150deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055)),
+      rgba(18, 10, 12, 0.48);
+    border: 1px solid var(--ios-hairline);
+    box-shadow:
+      0 16px 46px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(28px) saturate(165%);
+    -webkit-backdrop-filter: blur(28px) saturate(165%);
+    border-radius: var(--ios-radius-lg);
+  }
+
+  .glass-control {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 8px 24px rgba(0, 0, 0, 0.16);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border-radius: var(--ios-radius-md);
+    transition: transform 0.22s var(--ios-ease), background 0.22s var(--ios-ease), border-color 0.22s var(--ios-ease), box-shadow 0.22s var(--ios-ease), color 0.22s var(--ios-ease);
+  }
+
+  .glass-control:hover {
+    background: rgba(255, 255, 255, 0.155);
+    border-color: rgba(255, 255, 255, 0.23);
+    transform: translateY(-1px);
+  }
+
+  .glass-window::before,
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 22%, transparent 72%, rgba(251, 191, 36, 0.12)),
+      radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.20), transparent 18%),
+      radial-gradient(circle at 78% 82%, rgba(251, 191, 36, 0.08), transparent 22%);
+    opacity: 0.44;
+  }
+
+  .glass-window::after,
+  .glass-panel::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: 1.25rem;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.32), transparent 28%),
+      linear-gradient(315deg, rgba(251, 191, 36, 0.16), transparent 34%),
+      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.18), transparent 40%);
+    mix-blend-mode: screen;
+    opacity: 0.32;
+  }
+
+  /* 苹果风格的玻璃按钮 */
+  .glass-button {
+    position: relative;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08)),
+      radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.15), transparent 50%),
+      rgba(10, 0, 5, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(251, 191, 36, 0.08),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px) saturate(170%) brightness(1.06);
+    -webkit-backdrop-filter: blur(24px) saturate(170%) brightness(1.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-button:hover {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.12)),
+      radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.20), transparent 50%),
+      rgba(10, 0, 5, 0.20);
+    border-color: rgba(255, 255, 255, 0.40);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.36),
+      inset 0 -1px 0 rgba(251, 191, 36, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(28px) saturate(180%) brightness(1.08);
+    -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.08);
+    transform: translateY(-2px);
+  }
+
+  .glass-button:active {
+    transform: translateY(0);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      inset 0 -1px 0 rgba(251, 191, 36, 0.06),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  /* 增强的玻璃卡片悬停效果 */
+  .glass-panel:hover {
+    box-shadow:
+      0 20px 56px rgba(0, 0, 0, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-button:hover {
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.32),
+      0 0 16px 1px rgba(251, 191, 36, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.36),
+      inset 0 -1px 0 rgba(251, 191, 36, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .edge-glow {
+    box-shadow:
+      0 0 24px rgba(251, 191, 36, 0.15),
+      0 0 60px rgba(251, 191, 36, 0.08),
+      0 0 100px rgba(220, 38, 38, 0.04);
+  }
+
+  .ios-app-bg {
+    position: relative;
+    background:
+      radial-gradient(circle at 10% -8%, rgba(244, 196, 106, 0.20), transparent 30%),
+      radial-gradient(circle at 92% 16%, rgba(79, 184, 139, 0.10), transparent 28%),
+      radial-gradient(circle at 70% 92%, rgba(159, 45, 53, 0.18), transparent 38%),
+      linear-gradient(145deg, #090506 0%, #151016 42%, #081114 100%);
+  }
+
+  .ios-app-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      repeating-linear-gradient(135deg, rgba(244, 196, 106, 0.035) 0 1px, transparent 1px 18px);
+    background-size: 44px 44px, 44px 44px, 28px 28px;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+  }
+
+  .ios-topbar {
+    height: calc(3.75rem + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+    background:
+      radial-gradient(circle at 8% 34%, rgba(244, 196, 106, 0.18), transparent 26%),
+      linear-gradient(180deg, rgba(19, 15, 18, 0.86), rgba(14, 12, 15, 0.58));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 14px 42px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255,255,255,0.16);
+    backdrop-filter: blur(34px) saturate(190%);
+    -webkit-backdrop-filter: blur(34px) saturate(190%);
+    overflow: hidden;
+  }
+
+  .ios-topbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(105deg, transparent 0 18%, rgba(255,255,255,0.18) 18% 19%, transparent 19% 45%, rgba(255,224,168,0.1) 45% 46%, transparent 46%),
+      linear-gradient(180deg, rgba(255,255,255,0.1), transparent 58%);
+    opacity: 0.72;
+  }
+
+  .ios-tabbar {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    padding: 0.38rem;
+    border-radius: 1.25rem;
+    background: rgba(14, 14, 17, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 18px 56px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(32px) saturate(175%);
+    -webkit-backdrop-filter: blur(32px) saturate(175%);
+  }
+
+  .ios-sidebar {
+    position: relative;
+    background:
+      radial-gradient(circle at 34% 0%, rgba(244, 196, 106, 0.12), transparent 34%),
+      radial-gradient(circle at 0% 72%, rgba(79, 184, 139, 0.08), transparent 30%),
+      linear-gradient(180deg, rgba(18, 16, 19, 0.76), rgba(8, 9, 11, 0.64));
+    border-color: rgba(255, 255, 255, 0.13);
+    box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.08), 14px 0 46px rgba(0,0,0,0.22);
+    backdrop-filter: blur(34px) saturate(170%);
+    -webkit-backdrop-filter: blur(34px) saturate(170%);
+  }
+
+  .ios-sidebar::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 1px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgba(255,214,135,0.38), transparent);
+  }
+
+  .ios-main {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.035)),
+      rgba(7, 8, 10, 0.36);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+  }
+
+  .ios-hero {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.055)),
+      radial-gradient(circle at 12% 0%, rgba(244, 196, 106, 0.20), transparent 38%),
+      radial-gradient(circle at 92% 12%, rgba(79, 184, 139, 0.12), transparent 28%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--ios-radius-xl);
+    box-shadow: 0 18px 58px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(30px) saturate(165%);
+    -webkit-backdrop-filter: blur(30px) saturate(165%);
+  }
+
+  .ios-content {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04)),
+      rgba(7, 8, 10, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.105);
+    border-radius: var(--ios-radius-xl);
+    box-shadow: 0 20px 62px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+  }
+
+  .brand-mark {
+    box-shadow: 0 0 0 1px rgba(244, 196, 106, 0.28), 0 12px 30px rgba(0, 0, 0, 0.28);
+  }
+
+  .nav-active {
+    background:
+      linear-gradient(135deg, rgba(244, 196, 106, 0.20), rgba(79, 184, 139, 0.08)),
+      rgba(255, 255, 255, 0.08);
+    color: #fff3cd;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 28px rgba(0, 0, 0, 0.18);
+  }
+
+  .section-kicker {
+    letter-spacing: 0;
+    color: rgba(255, 232, 181, 0.84);
+  }
+
+  .ios-nav-pill {
+    border-radius: 999px;
+    transition: transform 0.22s var(--ios-ease), background 0.22s var(--ios-ease), color 0.22s var(--ios-ease), box-shadow 0.22s var(--ios-ease);
+  }
+
+  .ios-nav-pill:hover {
+    transform: translateY(-1px);
+  }
+
+  .ios-sidebar nav button {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.045);
+  }
+
+  .ios-touch {
+    transition: transform 0.2s var(--ios-ease), filter 0.2s var(--ios-ease), opacity 0.2s var(--ios-ease);
+  }
+
+  .ios-touch:active {
+    transform: scale(0.97);
+  }
+
+  .ios-focus-ring:focus-visible {
+    outline: 2px solid rgba(246, 191, 98, 0.78);
+    outline-offset: 3px;
+  }
+
+  .hanfu-hero {
+    min-height: 16.5rem;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 214, 142, 0.22), transparent 30%),
+      radial-gradient(circle at 82% 24%, rgba(246, 112, 120, 0.18), transparent 28%),
+      linear-gradient(112deg, rgba(88, 20, 26, 0.92), rgba(122, 64, 28, 0.72) 48%, rgba(68, 18, 24, 0.92));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 24px 70px rgba(57, 10, 12, 0.28);
+  }
+
+  .hanfu-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(120deg, transparent 0 18%, rgba(255,255,255,0.08) 18% 19%, transparent 19% 42%, rgba(255,255,255,0.06) 42% 43%, transparent 43%),
+      radial-gradient(ellipse at 50% 100%, rgba(255, 205, 115, 0.2), transparent 48%);
+    opacity: 0.9;
+  }
+
+  .hanfu-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 18px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 22px);
+    mask-image: radial-gradient(circle at 50% 42%, black 0 48%, transparent 78%);
+    opacity: 0.52;
+  }
+
+  .danmu-item {
+    left: 100%;
+    animation: danmu-fly 11s linear infinite;
+  }
+}
+
+@keyframes danmu-fly {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100vw - 100%)); }
+}
+
+/* 玻璃拟态基础样式 */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 网格背景 */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* 发光文字效果 */
+.glow-text {
+  text-shadow: 
+    0 0 10px rgba(0, 212, 255, 0.5),
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 0 40px rgba(0, 212, 255, 0.2);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(246, 191, 98, 0.42);
+  background-clip: padding-box;
+}
+
+/* 输入框样式增强 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .ios-app-bg {
+    padding: 0 !important;
+  }
+  
+  .glass-window {
+    margin: 0 !important;
+    border-radius: 0 !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .glass-panel {
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+  }
+  
+  .glass-control {
+    border-radius: 0.75rem !important;
+    padding: 0.75rem !important;
+    font-size: 14px !important;
+  }
+  
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .dashboard-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 0 0.5rem !important;
+  }
+  
+  .nav-tabs {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none !important;
+  }
+  
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .panel-content {
+    padding: 1rem !important;
+  }
+  
+  .modal-overlay {
+    padding: 1rem !important;
+  }
+  
+  .modal-content {
+    max-height: 80vh !important;
+    border-radius: 1.5rem !important;
+  }
+  
+  .list-item {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .button-group {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+  
+  .button-group button {
+    width: 100% !important;
+  }
+  
+  .danmu-layer {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .danmu-item {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 11px !important;
+  }
+  
+  .map-container {
+    height: 200px !important;
+  }
+  
+  .card-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .stat-card {
+    padding: 1rem !important;
+    text-align: center !important;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem !important;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem !important;
+  }
+  
+  .avatar {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+  
+  .tag {
+    font-size: 11px !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+  
+  .sidebar {
+    position: fixed !important;
+    left: -100% !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 80% !important;
+    max-width: 300px !important;
+    z-index: 100 !important;
+    transition: left 0.3s ease !important;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3) !important;
+  }
+  
+  .sidebar.open {
+    left: 0 !important;
+  }
+  
+  .sidebar-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(0,0,0,0.5) !important;
+    z-index: 99 !important;
+  }
+  
+  .bottom-nav {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: rgba(15,23,42,0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
+    padding: 0.5rem !important;
+    z-index: 50 !important;
+  }
+  
+  .bottom-nav-item {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    padding: 0.5rem !important;
+    font-size: 11px !important;
+  }
+  
+  .bottom-nav-item svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+  
+  .table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  table {
+    min-width: 500px !important;
+  }
+  
+  .search-bar {
+    width: 100% !important;
+  }
+  
+  .search-bar input {
+    width: 100% !important;
+  }
+  
+  .pagination {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  
+  .pagination button {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .glass-window {
+    padding: 0.75rem !important;
+  }
+  
+  .glass-panel {
+    padding: 0.75rem !important;
+  }
+  
+  h1 {
+    font-size: 1.25rem !important;
+  }
+  
+  h2 {
+    font-size: 1.1rem !important;
+  }
+  
+  h3 {
+    font-size: 1rem !important;
+  }
+  
+  .stat-value {
+    font-size: 1.25rem !important;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .modal-content {
+    max-height: 90vh !important;
+  }
+  
+  .bottom-nav {
+    display: none !important;
+  }
+}
+
+@supports (padding: max(0px)) {
+  .ios-app-bg {
+    padding-left: max(0.5rem, env(safe-area-inset-left)) !important;
+    padding-right: max(0.5rem, env(safe-area-inset-right)) !important;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom)) !important;
+  }
+  
+  .bottom-nav {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom)) !important;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button, a {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  .ios-touch {
+    -webkit-tap-highlight-color: transparent !important;
+  }
+}

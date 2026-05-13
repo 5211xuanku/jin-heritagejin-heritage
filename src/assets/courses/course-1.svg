@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396 240" role="img" aria-label="晋剧身段入门">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0b0507"/><stop offset=".52" stop-color="#321014"/><stop offset="1" stop-color="#151009"/></linearGradient>
+    <radialGradient id="glow" cx=".28" cy=".2" r=".86"><stop stop-color="#f59e0b" stop-opacity=".42"/><stop offset=".7" stop-color="#000" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="396" height="240" rx="26" fill="url(#bg)"/>
+  <rect width="396" height="240" rx="26" fill="url(#glow)"/>
+  <path d="M0 188c72-24 134-22 198 0s126 24 198 0v52H0Z" fill="#050203" opacity=".5"/>
+  <path d="M164 82c20-28 48-28 68 0M198 104v92M154 132h88M150 196c28-24 68-24 96 0" stroke="#ffe6ad" stroke-width="10" stroke-linecap="round" fill="none"/><path d="M136 120c-28 22-46 54-52 96M260 120c28 22 46 54 52 96" stroke="#f59e0b" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <text x="24" y="202" fill="#ffe7ad" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="24" font-weight="800">晋剧身段入门</text>
+  <text x="24" y="224" fill="#f8c469" font-family="Microsoft YaHei, Noto Sans SC, sans-serif" font-size="13">站姿 步法 水袖</text>
+</svg>
